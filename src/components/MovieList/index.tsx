@@ -33,7 +33,7 @@ const MovieCard = ({
     </div>
     <div className="absolute top-0 left-0 w-full flex justify-between p-4">
       <div className=" top-5 left-5 text-[14px] font-medium">
-        <h3 className="text-2xl mb-2">{title}</h3>
+        <h3 className="text-2xl mb-2 text-left">{title?.trim()}</h3>
         <p className="text-sm bg-slate-100 py-1 px-3 rounded-md w-max text-black">
           {genre}
         </p>
@@ -52,7 +52,7 @@ const MovieList = ({ title, movies }: Iprops) => {
         <div className="py-8 px-4 lg:px-10">
           <h2 className="text-white font-semibold mb-8 text-3xl">{title}</h2>
           <ScrollArea className="max-w-[100vw] md:w-full whitespace-nowrap rounded-md pb-5">
-            <div className="flex gap-x-4 gap-y-8 justify-between">
+            <div className="flex gap-x-4 gap-y-8">
               {movies?.length > 0
                 ? movies.map((movie: iMovie) => (
                   <MovieCard key={movie?.id} movie={movie} router={router} />

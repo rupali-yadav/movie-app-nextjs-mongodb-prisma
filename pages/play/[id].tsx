@@ -40,10 +40,9 @@ const Movie = () => {
    const router = useRouter();
    const { selectedProfile } = useProfile();
    const movieId = router?.query?.id;
-   const { data: movie , error, isLoading} = useMovie(movieId as string, selectedProfile?.id);
+   const { data: movie, error, isLoading } = useMovie(movieId as string, selectedProfile?.id);
    // Wait for the router to be ready
    if (!router.isReady) return null;
-
    const videoRef = useRef<HTMLVideoElement>(null);
 
    const updateWatchProgress = async (timeInSeconds: number) => {
@@ -127,7 +126,7 @@ const Movie = () => {
 
    if (isLoading) return <Loader />;
    if (error) return <Error />;
-   
+
    return (
       <div className='relative text-white h-screen w-full z-10'>
          <div className=' absolute top-4 left-4 z-20 cursor-pointer'>

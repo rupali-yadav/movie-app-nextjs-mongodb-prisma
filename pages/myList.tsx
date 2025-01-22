@@ -1,12 +1,12 @@
 import useWatchListMovies from "@/hooks/useWatchListMovies";
 import MovieList from "@/src/components/MovieList";
-import Navbar from "@/src/components/Navbar";
 import { useProfile } from "@/src/context/profileContext";
 import { iMovie, iMovieWrapper } from "@/src/types";
-import { CircleOff } from "lucide-react";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Navbar from "@/src/components/Navbar";
+import { CircleOff } from "lucide-react";
 
 export async function getServerSideProps(context: NextPageContext) {
     // this is how you get session on client side

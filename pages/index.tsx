@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Navbar from "@/src/components/Navbar";
 import MovieList from "@/src/components/MovieList";
 import Error from "@/src/components/Error";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import useMovieList from "@/hooks/useMovieList";
 import { getSession } from "next-auth/react";
 import useWatchProgresses from "@/hooks/useWatchProgresses";
@@ -40,11 +39,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const Home = () => {
   const { selectedProfile } = useProfile();
-  const {
-    data: user,
-    isLoading: userLoading,
-    error: userError,
-  } = useCurrentUser();
+
 
   const {
     data: movies,
@@ -58,8 +53,8 @@ const Home = () => {
     error: progressError,
   } = useWatchProgresses(selectedProfile?.id || "");
 
-  const isLoading = userLoading || moviesLoading || progressLoading;
-  const isError = userError || moviesError || progressError;
+  const isLoading = moviesLoading || progressLoading;
+  const isError = moviesError || progressError;
 
   let continueWatchingMovies: Array<iMovie> = [];
   if (watchProgresses?.length) {
@@ -86,7 +81,10 @@ const Home = () => {
             title="Continue watching"
             movies={continueWatchingMovies}
           />
-          <MovieList title="Trending" movies={movies} />
+          <MovieList
+            title="Trending"
+            movies={movies}
+          />
         </>
       )}
     </>
